@@ -12,7 +12,8 @@ public class TestBase {
     @BeforeAll
     static void setup() {
         Configuration.startMaximized = true;
-        /Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub/";
+        //fof remote run autotest
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub/";
     }
 
 
