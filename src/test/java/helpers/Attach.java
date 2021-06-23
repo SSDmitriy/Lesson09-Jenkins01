@@ -48,35 +48,36 @@ public class Attach {
 //                + "' type='video/mp4'></video></body></html>";
 //    }
 //
-//    public static void addVideo(String sessionId) {
-//        URL videoUrl = getVideoUrl(sessionId);
-//        if (videoUrl != null) {
-//            InputStream videoInputStream = null;
-//            sleep(1000);
-//
-//            for (int i = 0; i < 10; i++) {
-//                try {
-//                    videoInputStream = videoUrl.openStream();
-//                    break;
-//                } catch (FileNotFoundException e) {
-//                    sleep(1000);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//            Allure.addAttachment("Video", "video/mp4", videoInputStream, "mp4");
-//        }
-//    }
 
-//    public static URL getVideoUrl(String sessionId) {
-//        String videoUrl = "https://selenoid.autotests.cloud/video/" + sessionId + ".mp4";
-//
-//        try {
-//            return new URL(videoUrl);
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
+    public static void addVideo(String sessionId) {
+        URL videoUrl = getVideoUrl(sessionId);
+        if (videoUrl != null) {
+            InputStream videoInputStream = null;
+            sleep(1000);
+
+            for (int i = 0; i < 10; i++) {
+                try {
+                    videoInputStream = videoUrl.openStream();
+                    break;
+                } catch (FileNotFoundException e) {
+                    sleep(1000);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            Allure.addAttachment("Video", "video/mp4", videoInputStream, "mp4");
+        }
+    }
+
+    public static URL getVideoUrl(String sessionId) {
+        String videoUrl = "https://selenoid.autotests.cloud/video/" + sessionId + ".mp4";
+
+        try {
+            return new URL(videoUrl);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }
