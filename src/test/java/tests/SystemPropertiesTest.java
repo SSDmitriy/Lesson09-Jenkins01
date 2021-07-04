@@ -35,7 +35,7 @@ public class SystemPropertiesTest {
         //ссохранить в String данные из System.getProperty
         //если в gradle пропертя не будет задана, то возьмётся значение, заданное здесь по умолчанию
         String browser = System.getProperty("browser_type", "default_brow");
-        String value = System.getProperty("version_brow", "default_version");
+        String value = System.getProperty("browser_version", "default_version");
 
         System.out.println("prop_browser: " + browser);
         System.out.println("prop_version: " + value);
