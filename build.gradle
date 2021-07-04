@@ -62,10 +62,11 @@ tasks.withType(JavaCompile) {
 task run_for_terminal(type: Test) {
 //    systemProperties(System.getProperties())
 //    установить пропертю "browser_type" = "oper"
-    systemProperty("browser_type", System.getProperty("BROWSER_key_for_Jenkins", "operaaa"))
+    //ключ "browser_KEY_for_Jenkins" нужен для передачи нужных значение ИЗ Jenkins сюда в код
+    systemProperty("browser_type", System.getProperty("browser_KEY_for_Jenkins", "operaaa"))
 
     //установить пропертю "version_brow" = "999"
-    systemProperty("browser_version", System.getProperty("VERSION_key_for_Jenkins", "999"))
+    systemProperty("browser_version", System.getProperty("version_KEY_for_Jenkins", "999"))
 
     useJUnitPlatform {
         //установить тэги (запускаться будут только тесты с этим тегом
