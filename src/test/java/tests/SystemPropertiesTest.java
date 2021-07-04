@@ -28,9 +28,16 @@ public class SystemPropertiesTest {
     }
 
     @Test
+    //если в build.gradle прописать  includeTags "terminal_tag"
+    //то будут запускаться только тесты с аннотацией @Tag и значением этого тега
     @Tag("terminal_tag")
     void methReadFromTerminal(){
-        String value = System.getProperty("version", "77");
-        System.out.println(value);
+        //ссохранить в String данные из System.getProperty
+        //если в gradle пропертя не будет задана, то возьмётся значение, заданное здесь по умолчанию
+        String browser = System.getProperty("browser_type", "default_brow");
+        String value = System.getProperty("version_brow", "default_version");
+
+        System.out.println("prop_browser: " + browser);
+        System.out.println("prop_version: " + value);
     }
 }
