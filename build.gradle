@@ -42,16 +42,13 @@ tasks.withType(JavaCompile) {
 }
 
 //задача на запуск из терминала
-//в терминале писать команду  gradlew clean run_for_terminal - для запуска ОДНОЙ таски
-//gradlew clean test run_for_terminal - для запуска всех тестов
+//в терминале писать команду gradlew clean test run_for_terminal - для запуска всех тестов
 task run_for_terminal(type: Test) {
 
     //ключ "url_from_Jenkins" нужен для передачи нужных значение ИЗ Jenkins сюда в код
     systemProperty("remote_url", System.getProperty("url_from_Jenkins", "https://selenoid.autotests.cloud/wd/hub/"))
 
-     useJUnitPlatform {
-        //установить тэги (запускаться будут только тесты с этим тегом
-        //includeTags "terminal_tag"
+    useJUnitPlatform {
 
         //включить логирование - для вывода в консоль результатов и sout'ов, которые записаны в тесте
         testLogging {
@@ -60,23 +57,5 @@ task run_for_terminal(type: Test) {
                 exceptionFormat "short"
             }
         }
-
     }
 }
-
-//task by_owner_test(type: Test){
-//    useJUnitPlatform{
-//        includeTags 'owner_tag'
-//        testLogging {
-//            lifecycle {
-//                events "started", "skipped", "failed", "standard_error", "standard_out"
-//                exceptionFormat "short"
-//            }
-//        }
-//    }
-//}
-//
-//
-//test {
-//    useJUnitPlatform()
-//}

@@ -2,11 +2,10 @@ package tests;
 
 
 import config_g.Creds;
-import org.junit.jupiter.api.Tag;
+//import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import com.github.javafaker.Faker;
 import components.CalendarComponent;
-import org.junit.jupiter.api.Test;
 import pages.AssertPage;
 import pages.RegistrationFormPage;
 
@@ -55,6 +54,7 @@ public class StudentRegistrationFormTest extends TestBase {
     @Test
     void sucsessfulRegistrationTest() {
 
+        //чтение логина и пароля из файла .properties
         String login = Creds.my_creds_factory.login();
         String password = Creds.my_creds_factory.password();
 
