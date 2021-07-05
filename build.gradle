@@ -41,38 +41,17 @@ tasks.withType(JavaCompile) {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
-//таска для передачи параметров внутрь тестов
-//в терминале писать команду gradlew clean run_for_terminal -Dversion=99
-//tasks.withType(Test) {
-//    systemProperties(System.getProperties())
-//    systemProperty("browser", System.getProperty("brow", "oper"))
-//
-//    useJUnitPlatform()
-//    testLogging {
-//        lifecycle {
-////            events "started", "failed"
-//            events "started", "skipped", "failed", "standard_error", "standard_out"
-//            exceptionFormat "short"
-//        }
-//    }
-//}
-
-
 //задача на запуск из терминала
 //в терминале писать команду  gradlew clean run_for_terminal - для запуска ОДНОЙ таски
 //gradlew clean test run_for_terminal - для запуска всех тестов
 task run_for_terminal(type: Test) {
-//    systemProperties(System.getProperties())
-//    установить пропертю "browser_type" = "oper"
-    //ключ "browser_KEY_for_Jenkins" нужен для передачи нужных значение ИЗ Jenkins сюда в код
-    systemProperty("browser_type", System.getProperty("browser_KEY_for_Jenkins", "operaaa"))
 
-    //установить пропертю "version_brow" = "999"
-    systemProperty("browser_version", System.getProperty("version_KEY_for_Jenkins", "999"))
+    //ключ "url_from_Jenkins" нужен для передачи нужных значение ИЗ Jenkins сюда в код
+    systemProperty("remote_url", System.getProperty("url_from_Jenkins", "https://selenoid.autotests.cloud/wd/hub/"))
 
-    useJUnitPlatform {
+     useJUnitPlatform {
         //установить тэги (запускаться будут только тесты с этим тегом
-        includeTags "terminal_tag"
+        //includeTags "terminal_tag"
 
         //включить логирование - для вывода в консоль результатов и sout'ов, которые записаны в тесте
         testLogging {
@@ -85,19 +64,19 @@ task run_for_terminal(type: Test) {
     }
 }
 
-task by_owner_test(type: Test){
-    useJUnitPlatform{
-        includeTags 'owner_tag'
-        testLogging {
-            lifecycle {
-                events "started", "skipped", "failed", "standard_error", "standard_out"
-                exceptionFormat "short"
-            }
-        }
-    }
-}
-
-
-test {
-    useJUnitPlatform()
-}
+//task by_owner_test(type: Test){
+//    useJUnitPlatform{
+//        includeTags 'owner_tag'
+//        testLogging {
+//            lifecycle {
+//                events "started", "skipped", "failed", "standard_error", "standard_out"
+//                exceptionFormat "short"
+//            }
+//        }
+//    }
+//}
+//
+//
+//test {
+//    useJUnitPlatform()
+//}
