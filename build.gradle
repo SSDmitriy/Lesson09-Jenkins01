@@ -27,6 +27,8 @@ dependencies {
             "com.codeborne:selenide:$selenideVersion",
             "io.qameta.allure:allure-selenide:$allureVersion",
             "com.github.javafaker:javafaker:1.0.2",
+
+            //зависимость для сохранения/передачи пропертей через файлы
             "org.aeonbits.owner:owner:1.0.12",
 
             "org.junit.jupiter:junit-jupiter-api:$junitVersion")
@@ -83,6 +85,19 @@ task run_for_terminal(type: Test) {
     }
 }
 
-//test {
-//    useJUnitPlatform()
-//}
+task by_owner_test(type: Test){
+    useJUnitPlatform{
+        includeTags 'owner_tag'
+        testLogging {
+            lifecycle {
+                events "started", "skipped", "failed", "standard_error", "standard_out"
+                exceptionFormat "short"
+            }
+        }
+    }
+}
+
+
+test {
+    useJUnitPlatform()
+}

@@ -1,5 +1,9 @@
 package tests;
 
+//класс для демонстрации работы с системными пропертями
+//можно настроить параметры по умолчанию,
+// которые также возможно изменять извне (через Jenkins)
+
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
