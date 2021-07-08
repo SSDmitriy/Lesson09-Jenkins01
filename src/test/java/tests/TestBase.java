@@ -3,6 +3,7 @@ package tests;
 import com.codeborne.selenide.Configuration;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
+import config.Creds;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
@@ -16,22 +17,20 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class TestBase {
 
-    //static DriverConfig driverConfig = ConfigFactory.create(DriverConfig.class);
-
     @BeforeAll
     static void setup() {
         SelenideLogger.addListener("AllureListener", new AllureSelenide());
         Configuration.startMaximized = true;
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-//        capabilities.setCapability("browserName", "chrome");
-//        capabilities.setCapability("browserVersion", "89.0");
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", true);
         Configuration.browserCapabilities = capabilities;
 
         //fof remote run autotest
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub/";
+        Configuration.remote = "https://" +
+                Creds.myCredsFactory.login() + ":" + Creds.myCredsFactory.password() +
+                                                            "@selenoid.autotests.cloud/wd/hub/";
     }
 
     @AfterEach
@@ -50,5 +49,4 @@ public class TestBase {
     public static String getSessionId() {
         return ((RemoteWebDriver) getWebDriver()).getSessionId().toString();
     }
-
 }

@@ -27,10 +27,7 @@ dependencies {
             "com.codeborne:selenide:$selenideVersion",
             "io.qameta.allure:allure-selenide:$allureVersion",
             "com.github.javafaker:javafaker:1.0.2",
-
-            //зависимость для сохранения/передачи пропертей через файлы
             "org.aeonbits.owner:owner:1.0.12",
-
             "org.junit.jupiter:junit-jupiter-api:$junitVersion")
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
 }
@@ -41,16 +38,12 @@ tasks.withType(JavaCompile) {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
-//задача на запуск из терминала
-//в терминале писать команду gradlew clean test run_for_terminal - для запуска всех тестов
 task run_for_terminal(type: Test) {
 
-    //ключ "url_from_Jenkins" нужен для передачи нужных значение ИЗ Jenkins сюда в код
     systemProperty("remote_url", System.getProperty("url_from_Jenkins", "https://selenoid.autotests.cloud/wd/hub/"))
 
     useJUnitPlatform {
 
-        //включить логирование - для вывода в консоль результатов и sout'ов, которые записаны в тесте
         testLogging {
             lifecycle {
                 events "started", "skipped", "failed", "standard_error", "standard_out"

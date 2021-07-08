@@ -1,8 +1,7 @@
 package tests;
 
 
-import config_g.Creds;
-//import org.junit.jupiter.api.Tag;
+import config.Creds;
 import org.junit.jupiter.api.Test;
 import com.github.javafaker.Faker;
 import components.CalendarComponent;
@@ -13,11 +12,6 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-//main class with TEST DATA, TEST STEPS and ASSERTIONS
-//before test steps creating three PAGE OBJECTS:
-// -for fields
-// -for CALENDAR component
-// -for Assertions
 public class StudentRegistrationFormTest extends TestBase {
 
     Faker faker = new Faker();
@@ -32,7 +26,6 @@ public class StudentRegistrationFormTest extends TestBase {
             dayOfBirth = "28",
             monthOfBirth = "August",
             yearOfBirth = "1980",
-            //dayOfWeek = "Thursday",
             subject = "Chemistry",
             hobby1 = "Sports",
             hobby2 = "Reading",
@@ -55,8 +48,8 @@ public class StudentRegistrationFormTest extends TestBase {
     void sucsessfulRegistrationTest() {
 
         //чтение логина и пароля из файла .properties
-        String login = Creds.my_creds_factory.login();
-        String password = Creds.my_creds_factory.password();
+        String login = Creds.myCredsFactory.login();
+        String password = Creds.myCredsFactory.password();
 
         System.out.println(login);
         System.out.println(password);

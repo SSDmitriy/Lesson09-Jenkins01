@@ -5,15 +5,6 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class RegistrationFormPage {
 
-//all the elements
-//    SelenideElement firstNameInput = $("#firstName"),
-//            lastNameInput = $("#lastName"),
-//            userEmail = $("#userEmail"),
-//            gender = $("#genterWrapper"),
-//            mobile = $("#userNumber");
-
-    //methods should to be public for use in another classes
-    //for example in StudentRegistrationFormTest
     public void inputFirstName(String s) {
         $("#firstName").val(s);
     }
@@ -46,7 +37,6 @@ public class RegistrationFormPage {
     // s - for filename without path
     public void uploadFile(String s) {
         $("#uploadPicture").uploadFromClasspath("img/" + s);
-        //alt. method $("#uploadPicture").uploadFile(new File("src/test/resources/img/" + picture));
     }
 
     public void inputAddres(String s) {
